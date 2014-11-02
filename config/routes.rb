@@ -1,4 +1,7 @@
-Rails.application.routes.draw do
+SampleApp::Application.routes.draw do
+  resources :users
+  resources :sessions,   only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
 
   root 'static_pages#home'
   #get 'static_pages/home'
@@ -6,9 +9,6 @@ Rails.application.routes.draw do
   #get 'static_pages/contact'
   #get 'static_pages/about'
   #get 'static_pages/help'
-  
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
   
   match "/signup", to: 'users#new', via: :get
   match "/about", to: 'static_pages#about', via: :get
