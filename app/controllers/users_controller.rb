@@ -34,10 +34,16 @@ def create
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to users_url
+  end
   
   
   def edit
-     end
+    @user = User.find(params[:id])
+   end
 
   def update
     @user = User.find(params[:id])
